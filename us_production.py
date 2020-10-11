@@ -7,6 +7,7 @@ from logging import getLogger
 from pathlib import Path
 from sys import stdout
 from time import time
+
 from pandas import read_excel
 
 if __name__ == '__main__':
