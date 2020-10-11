@@ -24,7 +24,8 @@ if __name__ == '__main__':
     logger.info('started')
 
     url = 'https://www.eia.gov/dnav/pet/hist_xls/WCRFPUS2w.xls'
-    df = read_excel(io=url,sheet_name='Data 1', skiprows=2,)
+    sheet_name = 'Data 1'
+    df = read_excel(io=url, sheet_name=sheet_name, skiprows=2, )
     logger.info(df.shape)
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
