@@ -7,6 +7,7 @@ from logging import getLogger
 from pathlib import Path
 from sys import stdout
 from time import time
+from pandas import read_excel
 
 if __name__ == '__main__':
     time_start = time()
@@ -21,5 +22,9 @@ if __name__ == '__main__':
     basicConfig(datefmt='%m-%d-%Y %H:%M:%S', format=format_, handlers=handlers_, level=log_level_, )
     logger = getLogger(__name__)
     logger.info('started')
+
+    url = 'https://www.eia.gov/dnav/pet/hist_xls/WCRFPUS2w.xls'
+    df = read_excel(io=url,sheet_name='Data 1', skiprows=2,)
+    logger.info(df.shape)
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
