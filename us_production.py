@@ -8,7 +8,9 @@ from pathlib import Path
 from sys import stdout
 from time import time
 
+from matplotlib.pyplot import show
 from pandas import read_excel
+from seaborn import lineplot
 
 if __name__ == '__main__':
     time_start = time()
@@ -26,9 +28,9 @@ if __name__ == '__main__':
 
     url = 'https://www.eia.gov/dnav/pet/hist_xls/WCRFPUS2w.xls'
     sheet_name = 'Data 1'
-    df = read_excel(io=url,
-                    names=['date', 'value'],
-                    sheet_name=sheet_name, skiprows=2, )
+    df = read_excel(io=url, names=['date', 'value'], sheet_name=sheet_name, skiprows=2, )
     logger.info(df.shape)
+    lineplot(x='date', y='value', data=df)
+    show()
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
