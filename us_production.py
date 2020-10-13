@@ -10,10 +10,13 @@ from time import time
 
 from matplotlib.pyplot import show
 from pandas import read_excel
+from pandas.plotting import register_matplotlib_converters
 from seaborn import lineplot
+
 
 if __name__ == '__main__':
     time_start = time()
+    register_matplotlib_converters()
     LOG_PATH = Path('./logs/')
     LOG_PATH.mkdir(exist_ok=True)
     log_file = str(LOG_PATH / 'log-{}-{}.log'.format(datetime.datetime.today().strftime('%Y-%m-%d_%H-%M-%S'),
