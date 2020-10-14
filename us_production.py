@@ -8,12 +8,11 @@ from pathlib import Path
 from sys import stdout
 from time import time
 
-from matplotlib.pyplot import show
+from fbprophet import Prophet
 from pandas import read_excel
+from pandas import to_datetime
 from pandas.plotting import register_matplotlib_converters
 from seaborn import lineplot
-from fbprophet import Prophet
-from pandas import to_datetime
 
 if __name__ == '__main__':
     time_start = time()
