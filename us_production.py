@@ -42,8 +42,9 @@ if __name__ == '__main__':
     # roll up the projection dates from the max date a week at a time
     start_date = df['date'].max()
     logger.info(start_date)
-    projection_dates = [start_date + datetime.timedelta(weeks=current) for current in range(1, 52)]
-    projection_df = DataFrame(projection_dates, columns=['ds'])
-    prediction = model.predict(df=projection_df)
+    dates_df = DataFrame([start_date + datetime.timedelta(weeks=current) for current in range(1, 52)], columns=['ds'])
+    prediction_df = model.predict(df=dates_df)
+
+
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
