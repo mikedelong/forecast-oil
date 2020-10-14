@@ -14,6 +14,7 @@ from pandas import to_datetime
 from pandas.plotting import register_matplotlib_converters
 from seaborn import lineplot
 from pandas import DataFrame
+from matplotlib.pyplot import  show
 
 if __name__ == '__main__':
     time_start = time()
@@ -37,14 +38,15 @@ if __name__ == '__main__':
     logger.info(df.shape)
     model = Prophet()
     model.fit(df=df.rename(columns={'date': 'ds', 'value': 'y'}, ))
-    lineplot(x='date', y='value', data=df)
+    ax = lineplot(x='date', y='value', data=df)
 
     # roll up the projection dates from the max date a week at a time
     start_date = df['date'].max()
     logger.info(start_date)
-    dates_df = DataFrame([start_date + datetime.timedelta(weeks=current) for current in range(1, 52)], columns=['ds'])
+    dates_df = DataFrame([start_date + datetime.timedelta(weeks=current) for current in range(1, 520)], columns=['ds'])
     prediction_df = model.predict(df=dates_df)
-
+    model.plot(fcst=prediction_df, uncertainty=True, ax=ax,plot_cap=True, xlabel='ds', ylabel='y',)
+    show()
 
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
