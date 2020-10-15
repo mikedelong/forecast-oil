@@ -25,4 +25,8 @@ if __name__ == '__main__':
     logger = getLogger(__name__)
     logger.info('started')
 
+    api_key = ''
+
+    url = 'http://api.eia.gov/series/?api_key={}&series_id=STEO.COPR_OPEC.A'.format(api_key)
+
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
