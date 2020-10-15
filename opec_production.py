@@ -11,6 +11,7 @@ from time import time
 from pandas.plotting import register_matplotlib_converters
 from json import load
 from urllib.request import urlopen
+from json import loads
 
 if __name__ == '__main__':
     time_start = time()
@@ -36,4 +37,6 @@ if __name__ == '__main__':
     with urlopen(url=url, ) as input_fp:
         data = input_fp.read().decode('utf-8')
 
+    data = loads(data)
+    data_request = data['request']
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
