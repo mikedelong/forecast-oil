@@ -9,6 +9,8 @@ from sys import stdout
 from time import time
 
 from pandas.plotting import register_matplotlib_converters
+from json import load
+from urllib.request import urlopen
 
 if __name__ == '__main__':
     time_start = time()
@@ -25,8 +27,13 @@ if __name__ == '__main__':
     logger = getLogger(__name__)
     logger.info('started')
 
-    api_key = ''
+    with open(encoding='ascii', file='settings.json', mode='r', ) as settings_fp:
+        settings = load(fp=settings_fp, )
+    api_key = settings['api_key']
 
     url = 'http://api.eia.gov/series/?api_key={}&series_id=STEO.COPR_OPEC.A'.format(api_key)
+
+    with urlopen(url=url, ) as input_fp:
+        data = input_fp.read().decode('utf-8')
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
