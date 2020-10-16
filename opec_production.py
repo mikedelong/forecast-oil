@@ -1,4 +1,6 @@
 import datetime
+from json import load
+from json import loads
 from logging import FileHandler
 from logging import INFO
 from logging import StreamHandler
@@ -7,12 +9,12 @@ from logging import getLogger
 from pathlib import Path
 from sys import stdout
 from time import time
-
-from pandas.plotting import register_matplotlib_converters
-from json import load
 from urllib.request import urlopen
-from json import loads
+
+from matplotlib.pyplot import show
 from pandas import DataFrame
+from pandas.plotting import register_matplotlib_converters
+from seaborn import lineplot
 
 if __name__ == '__main__':
     time_start = time()
@@ -43,5 +45,8 @@ if __name__ == '__main__':
     date = [item[0] for item in series['data']]
     value = [item[1] for item in series['data']]
     df = DataFrame({'month': date, 'value': value})
-    df['date'] = df['month'].apply(lambda x: datetime.date(year=int(x[:4]), month=int(x[4:]), day=1,))
+    df['date'] = df['month'].apply(lambda x: datetime.date(year=int(x[:4]), month=int(x[4:]), day=1, ))
+    ax = lineplot(x='date', y='value', data=df)
+    show()
+
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
