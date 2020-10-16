@@ -12,6 +12,7 @@ from pandas.plotting import register_matplotlib_converters
 from json import load
 from urllib.request import urlopen
 from json import loads
+from pandas import DataFrame
 
 if __name__ == '__main__':
     time_start = time()
@@ -32,11 +33,14 @@ if __name__ == '__main__':
         settings = load(fp=settings_fp, )
     api_key = settings['api_key']
 
-    url = 'http://api.eia.gov/series/?api_key={}&series_id=STEO.COPR_OPEC.A'.format(api_key)
+    url = 'http://api.eia.gov/series/?api_key={}&series_id=STEO.COPR_OPEC.M'.format(api_key)
 
     with urlopen(url=url, ) as input_fp:
         data = input_fp.read().decode('utf-8')
 
     data = loads(data)
-    data_request = data['request']
+    series = data['series'][0]
+    date = [item[0] for item in series['data']]
+    value = [item[1] for item in series['data']]
+    df = DataFrame({'month': date, 'value': value})
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
