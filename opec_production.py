@@ -43,4 +43,5 @@ if __name__ == '__main__':
     date = [item[0] for item in series['data']]
     value = [item[1] for item in series['data']]
     df = DataFrame({'month': date, 'value': value})
+    df['date'] = df['month'].apply(lambda x: datetime.date(year=int(x[:4]), month=int(x[4:]), day=1,))
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
