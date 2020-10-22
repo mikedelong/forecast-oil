@@ -24,4 +24,7 @@ if __name__ == '__main__':
     logger = getLogger(__name__)
     logger.info('started')
 
+    # OECD data from https://data.oecd.org/energy/crude-oil-production.htm
+    input_file = './data/DP_LIVE_19102020150254641.csv'
+
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
