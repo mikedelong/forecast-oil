@@ -9,6 +9,7 @@ from sys import stdout
 from time import time
 
 from pandas.plotting import register_matplotlib_converters
+from pandas import read_csv
 
 if __name__ == '__main__':
     time_start = time()
@@ -26,5 +27,7 @@ if __name__ == '__main__':
 
     # OECD data from https://data.oecd.org/energy/crude-oil-production.htm
     input_file = './data/DP_LIVE_19102020150254641.csv'
+    df = read_csv(filepath_or_buffer=input_file)
+    logger.info(df.shape)
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
