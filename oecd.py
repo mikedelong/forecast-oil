@@ -29,5 +29,5 @@ if __name__ == '__main__':
     input_file = './data/DP_LIVE_19102020150254641.csv'
     df = read_csv(filepath_or_buffer=input_file)
     logger.info(df.shape)
-
+    logger.info(df['Flag Codes'].value_counts().to_dict())
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
