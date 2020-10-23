@@ -30,4 +30,6 @@ if __name__ == '__main__':
     df = read_csv(filepath_or_buffer=input_file)
     logger.info(df.shape)
     logger.info(df['Flag Codes'].value_counts().to_dict())
+    logger.info(df['LOCATION'].value_counts().to_dict())
+    logger.info('we have {} unique locations'.format(df['LOCATION'].nunique()))
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
