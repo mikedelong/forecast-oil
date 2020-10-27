@@ -32,7 +32,10 @@ if __name__ == '__main__':
     logger.info(df['Flag Codes'].value_counts().to_dict())
     logger.info(df['LOCATION'].value_counts().to_dict())
     logger.info('we have {} unique locations'.format(df['LOCATION'].nunique()))
-    locations = sorted(df['LOCATION'].unique(), reverse=True,)
+    locations = sorted(df['LOCATION'].unique(), reverse=False,)
     for location in locations:
         sample_df = df[df['LOCATION'] == location]
+        sample_df = sample_df.dropna(subset=['Value'])
+        pass
+        # sample_df = sample_df[sample_df['']]
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
