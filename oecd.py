@@ -33,7 +33,8 @@ if __name__ == '__main__':
     logger.info(df['LOCATION'].value_counts().to_dict())
     logger.info('we have {} unique locations'.format(df['LOCATION'].nunique()))
     locations = sorted(df['LOCATION'].unique(), reverse=False,)
+    # todo need to handle OECD and EU28 and G20 differently because they are aggregates
     for location in locations:
         sample_df = df[df['LOCATION'] == location].dropna(subset=['Value']).drop(columns=['Flag Codes'])
-        pass
+        logger.info('{}: {}'.format(location, len(sample_df)))
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
