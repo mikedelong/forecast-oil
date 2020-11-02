@@ -32,6 +32,7 @@ if __name__ == '__main__':
     logger.info(df['Flag Codes'].value_counts().to_dict())
     logger.info(df['LOCATION'].value_counts().to_dict())
     logger.info('we have {} unique locations'.format(df['LOCATION'].nunique()))
+    logger.info('indicator values are {}'.format(df['INDICATOR'].unique().tolist()))
     locations = sorted(df['LOCATION'].unique(), reverse=False, )
     # todo need to handle OECD and EU28 and G20 differently because they are aggregates
     excluded_locations = {'EU28', 'G20', 'OECD'}
