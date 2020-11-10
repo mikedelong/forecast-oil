@@ -26,7 +26,8 @@ if __name__ == '__main__':
     logger.info('started')
 
     # OECD data from https://data.oecd.org/energy/crude-oil-production.htm
-    input_file = './data/DP_LIVE_19102020150254641.csv'
+    # input_file = './data/DP_LIVE_19102020150254641.csv'
+    input_file = './data/DP_LIVE_09112020172606257.csv'
     df = read_csv(filepath_or_buffer=input_file)
     logger.info(df.shape)
     logger.info(df['LOCATION'].value_counts().to_dict())
