@@ -42,4 +42,5 @@ if __name__ == '__main__':
         sample_df = df[df['LOCATION'] == location].dropna(subset=['Value']).drop(columns=['Flag Codes'])
         sample_df = sample_df.sort_values(ascending=True, axis=0, by='TIME', )
         logger.info('{}: {} {}'.format(location, len(sample_df), sample_df['TIME'].max()))
+    world_df = df[df['LOCATION'] == 'WLD'].dropna(subset=['Value']).drop(columns=['Flag Codes'])
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
