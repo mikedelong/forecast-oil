@@ -45,6 +45,6 @@ if __name__ == '__main__':
         logger.info('{}: {} {}'.format(location, len(sample_df), sample_df['TIME'].max()))
     world_df = df[df['LOCATION'] == 'WLD'].dropna(subset=['Value']).drop(columns=['Flag Codes'])
     model = Prophet()
-    model.fit(df=world_df.rename(columns={'date': 'ds', 'value': 'y'}, ))
+    model.fit(df=world_df[['TIME', 'Value']].rename(columns={'TIME': 'ds', 'Value': 'y'}, ))
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
