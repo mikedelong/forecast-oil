@@ -8,8 +8,9 @@ from pathlib import Path
 from sys import stdout
 from time import time
 
-from pandas.plotting import register_matplotlib_converters
+from fbprophet import Prophet
 from pandas import read_csv
+from pandas.plotting import register_matplotlib_converters
 
 if __name__ == '__main__':
     time_start = time()
@@ -43,4 +44,7 @@ if __name__ == '__main__':
         sample_df = sample_df.sort_values(ascending=True, axis=0, by='TIME', )
         logger.info('{}: {} {}'.format(location, len(sample_df), sample_df['TIME'].max()))
     world_df = df[df['LOCATION'] == 'WLD'].dropna(subset=['Value']).drop(columns=['Flag Codes'])
+    model = Prophet()
+    model.fit(df=world_df.rename(columns={'date': 'ds', 'value': 'y'}, ))
+
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
