@@ -35,8 +35,8 @@ if __name__ == '__main__':
     for column in ['Flag Codes', 'INDICATOR']:
         logger.info('{} values are {}'.format(column, df[column].unique().tolist()))
     locations = sorted(df['LOCATION'].unique(), reverse=False, )
-    # todo need to handle OECD and EU28 and G20 differently because they are aggregates
-    excluded_locations = {'EU28', 'G20', 'OECD'}
+    # todo need to handle these differently because they are aggregates
+    excluded_locations = {'EU28', 'G20', 'OECD', 'WLD'}
     locations = [location for location in locations if location not in excluded_locations]
     for location in locations:
         sample_df = df[df['LOCATION'] == location].dropna(subset=['Value']).drop(columns=['Flag Codes'])
