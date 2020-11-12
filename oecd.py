@@ -46,5 +46,7 @@ if __name__ == '__main__':
     world_df = df[df['LOCATION'] == 'WLD'].dropna(subset=['Value']).drop(columns=['Flag Codes'])
     model = Prophet()
     model.fit(df=world_df[['TIME', 'Value']].rename(columns={'TIME': 'ds', 'Value': 'y'}, ))
+    future = model.make_future_dataframe(periods=365)
+    forecast = model.predict(future)
 
     logger.info('total time: {:5.2f}s'.format(time() - time_start))
