@@ -30,6 +30,7 @@ if __name__ == '__main__':
     # input_file = './data/DP_LIVE_19102020150254641.csv'
     # input_file = './data/DP_LIVE_09112020172606257.csv'
     input_file = './data/DP_LIVE_23112020174032843.csv'
+    # todo check for existence before trying to read the CSV file
     df = read_csv(filepath_or_buffer=input_file)
     logger.info(df.shape)
     logger.info(df['LOCATION'].value_counts().to_dict())
